@@ -1,0 +1,46 @@
+# instead of Docker Run Container
+services:
+  master1:
+    build:
+      context: .
+    hostname: Master1
+    container_name: Master1
+    ports:
+      - "19988:9870"   # Namenode Web UI
+      - "19989:8088"  # ResourceManager Web UI
+    networks:
+      - hadoop-net   
+
+  master2:
+    build:
+      context: .
+    hostname: Master2
+    container_name: Master2
+    ports:
+      - "19990:9870"   # Namenode Web UI
+      - "19991:8088"  # ResourceManager Web UI
+    networks:
+      - hadoop-net 
+
+  master3:
+    build:
+      context: .
+    hostname: Master3
+    container_name: Master3
+    ports:
+      - "19992:9870"   # Namenode Web UI
+      - "19993:8088"  # ResourceManager Web UI
+    networks:
+      - hadoop-net 
+      
+  worker1:
+    build:
+      context: .
+    hostname: Worker1
+    container_name: Worker1
+    networks:
+      - hadoop-net   
+
+networks:
+  hadoop-net:
+    driver: bridge    
